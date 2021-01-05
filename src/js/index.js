@@ -1,4 +1,4 @@
-import { gsap } from 'gsap'
+import { gsap, Linear } from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -7,6 +7,27 @@ const images = [...document.querySelectorAll('img')]
 
 const audio = document.querySelector('audio')
 
+document.querySelector('button').addEventListener('click', () => {
+  window.scrollTo(0, 0)
+  document.querySelector('.opening').classList.add('hidden')
+  pageScroll()
+  audio.play()
+})
+
+const muteButton = document.querySelector('.mute-button')
+let muted = false
+muteButton.addEventListener('click', () => {
+  console.log('joe')
+  if (muted === false) {
+    muted = true
+    audio.muted = true
+    muteButton.classList.add('muted')
+  } else {
+    muted = false
+    audio.muted = false
+    muteButton.classList.remove('muted')
+  }
+})
 
 manifests.forEach((manifest, i) => {
   const text = manifest.querySelector('.text')
@@ -39,12 +60,19 @@ manifests.forEach((manifest, i) => {
         }
       }
     }
-  });
+  })
   
   // add animations and labels to the timeline
   tl
   .fromTo(text, 
-    { backgroundSize: '0 100%' },
-    { backgroundSize: '100% 100%' }
+    { backgroundSize: '0 100%', ease: Linear.easeNone },
+    { backgroundSize: '100% 100%',ease: Linear.easeNone }
   )
 })
+
+
+function pageScroll() {
+  console.log('running?')
+  window.scrollBy(0,1);
+  setTimeout(pageScroll,13);
+}
