@@ -7164,6 +7164,27 @@ var manifests = _toConsumableArray(document.querySelectorAll('.manifest'));
 var images = _toConsumableArray(document.querySelectorAll('img'));
 
 var audio = document.querySelector('audio');
+document.querySelector('button').addEventListener('click', function () {
+  window.scrollTo(0, 0);
+  document.querySelector('.opening').classList.add('hidden');
+  pageScroll();
+  audio.play();
+});
+var muteButton = document.querySelector('.mute-button');
+var muted = false;
+muteButton.addEventListener('click', function () {
+  console.log('joe');
+
+  if (muted === false) {
+    muted = true;
+    audio.muted = true;
+    muteButton.classList.add('muted');
+  } else {
+    muted = false;
+    audio.muted = false;
+    muteButton.classList.remove('muted');
+  }
+});
 manifests.forEach(function (manifest, i) {
   var text = manifest.querySelector('.text');
 
@@ -7203,11 +7224,18 @@ manifests.forEach(function (manifest, i) {
 
 
   tl.fromTo(text, {
-    backgroundSize: '0 100%'
+    backgroundSize: '0 100%',
+    ease: _gsap.Linear.easeNone
   }, {
-    backgroundSize: '100% 100%'
+    backgroundSize: '100% 100%',
+    ease: _gsap.Linear.easeNone
   });
 });
+
+function pageScroll() {
+  window.scrollBy(0, 1);
+  setTimeout(pageScroll, 13);
+}
 },{"gsap":"../node_modules/gsap/index.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -7236,7 +7264,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59842" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50915" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
