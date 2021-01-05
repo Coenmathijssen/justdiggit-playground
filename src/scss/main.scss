@@ -167,27 +167,28 @@ h1 span {
       width: 60%;
     }
 
-    #wave {
+    svg {
       opacity: 0;
     }
   }
+
+  svg {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    fill: #fff;
+    transition: all .3s ease-in-out;
+  }
+
+  .line {
+    width: 0;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 50px;
+    transition: all .3s ease-in-out;
+  }
 }
 
-.line {
-  width: 0;
-  height: 3px;
-  background-color: #fff;
-  border-radius: 50px;
-  transition: all .3s ease-in-out;
-}
-
-#wave {
-  position: absolute;
-	height: 40px;
-	width: 40px;
-  fill: #fff;
-  transition: all .3s ease-in-out;
-}
 
 @for $i from 1 through 9 {
 	#Line_#{$i} {
